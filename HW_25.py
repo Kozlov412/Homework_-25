@@ -80,3 +80,44 @@ sorted_by_year_and_title: Dict[int, Any] = dict(
 
 # 8. Фильтрация и сортировка в одной строке (с filter и sorted)
 filtered_and_sorted_oneline: Dict[int, Any] = dict(sorted(filter(lambda item: get_sortable_year(item[1].get("year")) > 2020, full_dict.items()), key=lambda item: (get_sortable_year(item[1].get("year")), get_sortable_title(item))))
+
+# 9. Функция process_marvel_data для обработки данных Marvel
+def process_marvel_data(data: Dict[int, Dict[str, Any]]) -> List[Tuple[int, str]]:
+    """
+    Обрабатывает данные Marvel: возвращает список кортежей (id, title) фильмов,
+    отсортированных по названию в алфавитном порядке.
+    """
+    result: List[Tuple[int, str]] = []
+    for id_, movie_data in data.items():
+        title = movie_data.get("title")
+        if isinstance(title, str):  # Проверка, что title - строка
+            result.append((id_, title))
+    return sorted(result, key=lambda item: item[1])  # Сортировка по названию
+
+
+# Вывод результатов с использованием pprint
+print("\nЗадание 2: Фильтрация фильмов по введенным ID.")
+pprint(filtered_dict)
+
+print("\nЗадание 3: Получение уникальных режиссеров.")
+pprint(unique_directors)
+
+print("\nЗадание 4: Копирование словаря с годами в строковом формате.")
+pprint(string_year_dict)
+
+print("\nЗадание 5: Фильмы, начинающиеся на букву 'Ч'.")
+pprint(films_starting_with_ch)
+
+print("\nЗадание 6: Сортировка фильмов по году.")
+pprint(sorted_by_year)
+
+print("\nЗадание 7: Сортировка фильмов по году и названию.")
+pprint(sorted_by_year_and_title)
+
+print("\nЗадание 8: Фильтрация и сортировка фильмов после 2020 года в одной строке.")
+pprint(filtered_and_sorted_oneline)
+
+# Вызов process_marvel_data и вывод результата
+processed_data = process_marvel_data(filtered_dict)  # Обрабатываем filtered_dict
+print("\nЗадание 9: Обработка данных Marvel (id, title, сортировка по title).")
+pprint(processed_data)

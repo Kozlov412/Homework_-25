@@ -121,3 +121,10 @@ pprint(filtered_and_sorted_oneline)
 processed_data = process_marvel_data(filtered_dict)  # Обрабатываем filtered_dict
 print("\nЗадание 9: Обработка данных Marvel (id, title, сортировка по title).")
 pprint(processed_data)
+
+
+# Проверка mypy выявила ошибки:
+# HW#25.py:8: error:Argument 1 to "int" has incompatible type "Any | None"; expected "str | Buffer | SupportsInt | SupportsIndex | SupportsTrunc"  [arg-type]
+#HW#25.py:10: error: Incompatible return value type (got "float", expected "int")  [return-value]
+#HW#25.py:64: error: Item "None" of "Any | None" has no attribute "startswith"  [union-attr]
+#Found 3 errors in 1 file (checked 1 source file)
